@@ -33,7 +33,7 @@ import javax.imageio.ImageIO;
 @Manifest(authors = { "Dridia" }, name = "Dridia's Karambwan Fisher", version = 1.0, description = "Everything you need to make bank from Karambwans. Start with a \"small fishing net\" and a \"Karambwan vessel\". Start near a fishing spot.")
 public class dridiasKarambwanFisher extends ActiveScript implements PaintListener, MessageListener, InventoryListener{
 
-    public final Image img1 = getImage("https://i.imgur.com/gAjH6SU.png");
+    public final Image img1 = getImage("https://i.imgur.com/7Le35eG.png");
     public Timer startTime;
     public int startXP = 0;
 
