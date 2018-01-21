@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import xobot.client.callback.listeners.MessageListener;
 import xobot.client.callback.listeners.PaintListener;
 import xobot.script.ActiveScript;
@@ -6,11 +9,14 @@ import xobot.script.Manifest;
 import xobot.script.methods.*;
 import xobot.script.methods.tabs.Inventory;
 import xobot.script.methods.tabs.Skills;
+import xobot.script.util.Time;
 import xobot.script.util.Timer;
 import xobot.script.wrappers.Tile;
 
+import javax.swing.*;
 
-@Manifest(authors = { "Dridia" }, name = "Dridia's Auto Hunter", version = 0.1, description = "This will catch implings at the hunter area.")
+
+@Manifest(authors = { "Dridia" }, name = "Dridia's Auto Hunter", version = 0.2, description = "This will catch implings at the hunter area.")
 public class dridiaAutoHunter extends ActiveScript implements PaintListener, MessageListener{
 
     public static Timer runTime = null;
@@ -19,7 +25,7 @@ public class dridiaAutoHunter extends ActiveScript implements PaintListener, Mes
 
     public static int ImpJar = 11260;
     public static Tile startTile = new Tile(2556, 2845);
-    public static Imp selectedImp = Imp.KINGLY;
+    public static Imp selectedImp;
 
     public static Tile nextSpotTile;
 
@@ -35,9 +41,77 @@ public class dridiaAutoHunter extends ActiveScript implements PaintListener, Mes
 
     @Override
     public boolean onStart() {
-        runTime = new Timer(System.currentTimeMillis());
-        startExp = Skills.getCurrentExp(22);
-        startLvl = Skills.getCurrentLevel(22);
+
+        JDialog frame = new JDialog();
+        frame.setPreferredSize(new Dimension(250,80));
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        FlowLayout layout = new FlowLayout();
+        layout.setHgap(5);
+        layout.setVgap(5);
+        frame.setLayout(layout);
+
+        JComboBox<String> combo = new JComboBox<String>();
+        combo.setPreferredSize(new Dimension(200,20));
+        combo.setFocusable(false);
+
+        combo.addItem("--Select an Imp--");
+        combo.addItem("Baby Impling");
+        combo.addItem("Eclectic Impling");
+        combo.addItem("Ninja Impling");
+        combo.addItem("Kingly Impling");
+
+        JButton button = new JButton("Start");
+        button.setFocusable(false);
+        button.setPreferredSize(new Dimension(60,32));
+        button.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                switch(combo.getSelectedItem().toString()) {
+                    case "--Select an Imp--":
+                        onStop();
+                        break;
+                    case "Baby Impling":
+                        selectedImp = Imp.BABY;
+                        break;
+                    case "Eclectic Impling":
+                        selectedImp = Imp.ECLECTIC;
+                        break;
+                    case "Ninja Impling":
+                        selectedImp = Imp.NINJA;
+                        break;
+                    case "Kingly Impling":
+                        selectedImp = Imp.KINGLY;
+                        break;
+                    case "default":
+                        onStop();
+                        break;
+                }
+                frame.dispose();
+                runTime = new Timer(System.currentTimeMillis());
+                startExp = Skills.getCurrentExp(22);
+                startLvl = Skills.getCurrentLevel(22);
+
+            }
+
+        });
+
+        frame.add(combo);
+        frame.add(button);
+        frame.setTitle("Dridia's Auto Hunter");
+
+
+        frame.pack();
+        frame.setVisible(true);
+        while(frame.isVisible()) {
+            Time.sleep(500);
+        }
+
+
+
+
+
         return true;
     }
 
