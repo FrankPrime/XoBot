@@ -28,7 +28,7 @@ import javax.imageio.ImageIO;
  * Created by Dridia on 2018-01-16.
  */
 
-@Manifest(authors = { "Dridia" }, name = "Dridia's Glacor Killer", version = 1.0, description = "Kill Glacors at Glacors Lair")
+@Manifest(authors = { "Dridia" }, name = "Dridia's Glacor Hunter", version = 1.0, description = "Kill Glacors at Glacors Lair")
 public class dridiaGlacorHunter extends ActiveScript implements PaintListener, MessageListener, Mouse{
 
     public Timer startTime;
