@@ -28,7 +28,7 @@ import javax.imageio.ImageIO;
  * Created by Dridia on 2018-01-16.
  */
 
-@Manifest(authors = { "Dridia" }, name = "Dridia's Glacor Hunter", version = 1.0, description = "Kill Glacors at Glacors Lair")
+@Manifest(authors = { "Dridia" }, name = "Dridia's Glacor Killer", version = 1.0, description = "Kill Glacors at Glacors Lair")
 public class dridiaGlacorHunter extends ActiveScript implements PaintListener, MessageListener, Mouse{
 
     public Timer startTime;
@@ -60,7 +60,7 @@ public class dridiaGlacorHunter extends ActiveScript implements PaintListener, M
         /* Set all values that the user have chosen.*/
 
         //Get the prayer setting:
-        Variables.USE_PIETY = frame.checkBoxPiety.isEnabled();
+        Variables.USE_PIETY = frame.checkBoxPiety.isSelected();
         System.out.println("Piety: " + Variables.USE_PIETY);
 
         //Get the amount of potions to withdraw
