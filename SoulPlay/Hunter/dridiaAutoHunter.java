@@ -25,11 +25,11 @@ public class dridiaAutoHunter extends ActiveScript implements PaintListener, Mes
 
     public static int ImpJar = 11260;
     public static Tile startTile = new Tile(2556, 2845);
-    public static Imp selectedImp;
+    public static Imp selectedImp; 
 
     public static Tile nextSpotTile;
 
-    //Baby Impling: lvl 1, id: 6055 A: 3299
+    Baby Impling: lvl 1, id: 6055 A: 3299
     //Young Impling: lvl 22, id: 6056
     //Gourmet Impling: lvl 28, id: 6957
     //Earth Impling: lvl 36, id: 6058
